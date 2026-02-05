@@ -286,11 +286,59 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 4rem 2rem 2rem;
             background: rgba(34,139,34,0.95);
             color: white;
             margin-top: 4rem;
             font-weight: 300;
+        }
+
+        /* Redes Sociales - NUEVA SECCIÓN */
+        .redes-sociales {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .redes-sociales h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .redes-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .red-social {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .red-social:hover {
+            transform: translateY(-8px) scale(1.1);
+            background: rgba(255,140,0,0.2);
+            border-color: #FF8C00;
+            box-shadow: 0 15px 40px rgba(255,140,0,0.3);
+        }
+
+        .red-social i {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
         .mapa-icon {
@@ -320,6 +368,8 @@
             .ofertas { grid-template-columns: 1fr; }
             .oferta { flex-direction: column; text-align: center; }
             header { padding: 1rem; }
+            .redes-icons { gap: 1rem; }
+            .red-social i { font-size: 2rem; }
         }
     </style>
 </head>
@@ -387,7 +437,7 @@
                 </div>
 
                 <div class="oferta">
-                    <img src="i.ibb.co/kgzNK4yT/CAJA-FRUTA-scaled.jpg" alt="Fruta">
+                    <img src="https://i.ibb.co/kgzNK4yT/CAJA-FRUTA-scaled.jpg" alt="Fruta">
                     <div class="info">
                         <div class="negocio">Fruteria Pepe</div>
                         <h3>Fruta variada (caja)</h3>
@@ -416,6 +466,33 @@
 
     <footer>
         <p>Tu app de comida sostenible <i class="fas fa-leaf"></i></p>
+        
+        <!-- NUEVA SECCIÓN DE REDES SOCIALES -->
+        <div class="redes-sociales">
+            <h3>¡Síguenos en nuestras redes sociales!</h3>
+            <div class="redes-icons">
+                <a href="https://instagram.com/freshrescue" target="_blank" class="red-social" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://facebook.com/freshrescue" target="_blank" class="red-social" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="https://twitter.com/freshrescue" target="_blank" class="red-social" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </a>
+                <a href="https://tiktok.com/@freshrescue" target="_blank" class="red-social" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+                <a href="https://youtube.com/freshrescue" target="_blank" class="red-social" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -436,10 +513,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
