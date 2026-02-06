@@ -35,6 +35,33 @@
             top: 0;
             z-index: 100;
             animation: slideDown 0.8s ease-out;
+            position: relative;
+        }
+
+        /* Créditos esquina superior derecha */
+        .creditos {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(15px);
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 400;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            max-width: 280px;
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        .creditos strong {
+            color: #228B22;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.2rem;
         }
 
         @keyframes slideDown {
@@ -353,6 +380,15 @@
         }
 
         @media (max-width: 768px) {
+            .creditos {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 1rem auto 0;
+                max-width: 100%;
+                text-align: center;
+            }
+            
             h1 { font-size: 2.2rem; }
             .ofertas { grid-template-columns: 1fr; }
             .oferta { flex-direction: column; text-align: center; }
@@ -546,7 +582,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
         }
 
-        /* Responsive */
+        /* Responsive modales */
         @media (max-width: 720px) {
             .modal-rescate .modal-grid { 
                 grid-template-columns: 1fr; 
@@ -564,6 +600,13 @@
 </head>
 <body>
     <header>
+        <!-- CRÉDITOS SUPERIOR DERECHA -->
+        <div class="creditos">
+            <strong>Prototipo InnovaFood</strong><br>
+            Juan Daniel Porras, Pablo Racero e Isaac Laynez<br>
+            <small>1º SMR IES Salmedina</small>
+        </div>
+        
         <img src="https://i.ibb.co/5xKBLzy0/generated-image-5.jpg" alt="FreshRescue Logo" id="logo">
         <h1>FreshRescue</h1>
         <p>Rescata comida fresca de locales antes de que caduque</p>
@@ -607,42 +650,42 @@
                      data-direccion="C/ Panaderos 3, Chipiona"
                      data-recogida="Recogida hoy 19:00–20:00"
                      data-extra="Incluye 6 croissants; puede contener frutos secos.">
-                    <img src="https://img.freepik.com/foto-gratis/croissants-tabla-cortar-madera_1150-28480.jpg?sem=taish3_w=740&fit=crop&auto=format&w=740&q=80" alt="Croissants">
-                    <div class="info">
-                        <div class="negocio">Panadería La Esquina</div>
-                        <h3>Croissants frescos (pack 6u)</h3>
-                        <div class="precio">€2.50 <span>antes €6</span></div>
-                        <div class="caduca"><i class="fas fa-clock"></i> Caduca en 2h 40m</div>
-                        <button class="btn">¡Rescatar!</button>
-                    </div>
+                   <img src="https://img.freepik.com/foto-gratis/croissants-tabla-cortar-madera_1150-28480.jpg?sem=taish3_w=740&fit=crop&auto=format&w=740&q=80" alt="Croissants">
+                   <div class="info">
+                       <div class="negocio">Panadería La Esquina</div>
+                       <h3>Croissants frescos (pack 6u)</h3>
+                       <div class="precio">€2.50 <span>antes €6</span></div>
+                       <div class="caduca"><i class="fas fa-clock"></i> Caduca en 2h 40m</div>
+                       <button class="btn">¡Rescatar!</button>
+                   </div>
                 </div>
 
                 <div class="oferta"
                      data-direccion="Av. del Puerto 15, Chipiona"
                      data-recogida="Recogida hoy 14:30–15:00"
                      data-extra="Ración para 2 personas; puede contener marisco.">
-                    <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/paella-837f12c.jpg" alt="Paella">
-                    <div class="info">
-                        <div class="negocio">Restaurante El Puerto</div>
-                        <h3>Paella mixta (2 pax)</h3>
-                        <div class="precio">€8.00 <span>antes €18</span></div>
-                        <div class="caduca"><i class="fas fa-clock"></i> Caduca en 1h 30m</div>
-                        <button class="btn">¡Rescatar!</button>
-                    </div>
+                   <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/paella-837f12c.jpg" alt="Paella">
+                   <div class="info">
+                       <div class="negocio">Restaurante El Puerto</div>
+                       <h3>Paella mixta (2 pax)</h3>
+                       <div class="precio">€8.00 <span>antes €18</span></div>
+                       <div class="caduca"><i class="fas fa-clock"></i> Caduca en 1h 30m</div>
+                       <button class="btn">¡Rescatar!</button>
+                   </div>
                 </div>
 
                 <div class="oferta"
                      data-direccion="C/ Mercado 1, Chipiona"
                      data-recogida="Recogida hoy 20:00–21:00"
                      data-extra="Caja sorpresa con fruta variada de temporada.">
-                    <img src="https://i.ibb.co/kgzNK4yT/CAJA-FRUTA-scaled.jpg" alt="Fruta">
-                    <div class="info">
-                        <div class="negocio">Fruteria Pepe</div>
-                        <h3>Fruta variada (caja)</h3>
-                        <div class="precio">€3.00 <span>antes €9</span></div>
-                        <div class="caduca"><i class="fas fa-clock"></i> Caduca en 3h 20m</div>
-                        <button class="btn">¡Rescatar!</button>
-                    </div>
+                   <img src="https://i.ibb.co/kgzNK4yT/CAJA-FRUTA-scaled.jpg" alt="Fruta">
+                   <div class="info">
+                       <div class="negocio">Fruteria Pepe</div>
+                       <h3>Fruta variada (caja)</h3>
+                       <div class="precio">€3.00 <span>antes €9</span></div>
+                       <div class="caduca"><i class="fas fa-clock"></i> Caduca en 3h 20m</div>
+                       <button class="btn">¡Rescatar!</button>
+                   </div>
                 </div>
             </div>
         </div>
@@ -845,10 +888,10 @@
         // Acción final "Aceptar"
         document.getElementById('aceptarRescate').addEventListener('click', () => {
             formularioDialog.close();
-            alert('Esta función todavía no está desarrollada 😊\n\n¡Pronto podrás completar tu rescate!');
+            alert('¡Rescate confirmado! 😊\n\nTu pedido está en proceso. Recibirás confirmación por WhatsApp.');
         });
 
-        console.log('FreshRescue con modales mejorados 🚀');
+        console.log('FreshRescue Prototipo InnovaFood 🚀 - 1º SMR IES Salmedina');
     </script>
 </body>
 </html>
