@@ -153,6 +153,63 @@
             border-color: #FF8C00;
         }
 
+        /* ⭐ NUEVO: Estilos para el slider de precio */
+        .precio-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .precio-slider {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .precio-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255,140,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .precio-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 16px rgba(255,140,0,0.6);
+        }
+
+        .precio-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(255,140,0,0.4);
+        }
+
+        .precio-value {
+            font-weight: 600;
+            color: #FF8C00;
+            font-size: 1.1rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* Ocultar ofertas */
+        .oferta.oculta {
+            display: none;
+        }
+
         /* Contenido central: Ofertas */
         .ofertas-central {
             display: flex;
@@ -395,6 +452,7 @@
             header { padding: 1rem; }
             .redes-icons { gap: 1rem; }
             .red-social i { font-size: 2rem; }
+            .precio-slider-container { flex-direction: column; gap: 0.5rem; align-items: stretch; }
         }
 
         /* ===== MODALES CENTRADOS ===== */
@@ -582,6 +640,35 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.18);
         }
 
+        /* NUEVO MODAL DESCARGAR APP */
+        .modal-descargar {
+            max-width: 450px;
+            text-align: center;
+        }
+
+        .modal-descargar .modal-content {
+            padding: 3rem 2.5rem 2.5rem;
+        }
+
+        .modal-descargar .modal-icon {
+            font-size: 4rem;
+            color: #FF8C00;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-descargar h2 {
+            color: #228B22;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+
+        .modal-descargar .modal-texto {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
         /* Responsive modales */
         @media (max-width: 720px) {
             .modal-rescate .modal-grid { 
@@ -635,18 +722,22 @@
                         <option>Frutería</option>
                     </select>
                 </div>
+                <!-- ⭐ SLIDER DE PRECIO FUNCIONAL -->
                 <div class="filtro-group">
                     <label>Precio máx.</label>
-                    <input type="range" min="0" max="20" value="10">
-                    <span>€10</span>
+                    <div class="precio-slider-container">
+                        <input type="range" class="precio-slider" id="precioMax" min="0" max="20" value="10" step="0.5">
+                        <span class="precio-value" id="precioValue">€10</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Contenido central -->
         <div class="ofertas-central">
-            <div class="ofertas">
-                <div class="oferta"
+            <div class="ofertas" id="ofertasContainer">
+                <!-- ⭐ OFERTAS CON DATA-PRECIOS -->
+                <div class="oferta" data-precio="2.50"
                      data-direccion="C/ Panaderos 3, Chipiona"
                      data-recogida="Recogida hoy 19:00–20:00"
                      data-extra="Incluye 6 croissants; puede contener frutos secos.">
@@ -660,7 +751,7 @@
                    </div>
                 </div>
 
-                <div class="oferta"
+                <div class="oferta" data-precio="8.00"
                      data-direccion="Av. del Puerto 15, Chipiona"
                      data-recogida="Recogida hoy 14:30–15:00"
                      data-extra="Ración para 2 personas; puede contener marisco.">
@@ -674,7 +765,7 @@
                    </div>
                 </div>
 
-                <div class="oferta"
+                <div class="oferta" data-precio="3.00"
                      data-direccion="C/ Mercado 1, Chipiona"
                      data-recogida="Recogida hoy 20:00–21:00"
                      data-extra="Caja sorpresa con fruta variada de temporada.">
@@ -700,7 +791,7 @@
             <div class="cta">
                 <h3>¡Únete ya!</h3>
                 <p>Descarga la app y rescata comida cerca de Chipiona.</p>
-                <button class="btn" style="width: 100%;">Descargar App</button>
+                <button class="btn descargar-btn" style="width: 100%;">Descargar App</button>
             </div>
         </div>
     </div>
@@ -804,6 +895,22 @@
         </div>
     </dialog>
 
+    <!-- NUEVO MODAL 3: DESCARGAR APP -->
+    <dialog id="descargarModal" class="modal-base modal-descargar">
+        <button class="modal-close" id="modalCloseBtn3" aria-label="Cerrar">×</button>
+        
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-download"></i>
+            </div>
+            <h2>App en desarrollo</h2>
+            <p class="modal-texto">La aplicación todavía no está disponible, muchas gracias</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cerrarDescargar">Entendido</button>
+            </div>
+        </div>
+    </dialog>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         // Mapa
@@ -815,9 +922,61 @@
         L.marker([36.7333, -6.4333]).addTo(map).bindPopup('¡Estás aquí! Ofertas cerca.');
         L.marker([36.735, -6.435]).addTo(map).bindPopup('Panadería La Esquina');
 
+        // ⭐ FUNCIONALIDAD SLIDER DE PRECIO
+        const precioSlider = document.getElementById('precioMax');
+        const precioValue = document.getElementById('precioValue');
+        const ofertasContainer = document.getElementById('ofertasContainer');
+        let precioMaximo = parseFloat(precioSlider.value);
+
+        // Función para actualizar el valor mostrado
+        function actualizarPrecioValue() {
+            const valor = parseFloat(precioSlider.value);
+            precioValue.textContent = `€${valor.toFixed(2)}`;
+            precioMaximo = valor;
+            filtrarOfertas();
+        }
+
+        // Función para filtrar ofertas por precio
+        function filtrarOfertas() {
+            const ofertas = ofertasContainer.querySelectorAll('.oferta');
+            let visibles = 0;
+
+            ofertas.forEach(oferta => {
+                const precioOferta = parseFloat(oferta.dataset.precio);
+                if (precioOferta <= precioMaximo) {
+                    oferta.classList.remove('oculta');
+                    visibles++;
+                } else {
+                    oferta.classList.add('oculta');
+                }
+            });
+
+            // Mensaje si no hay ofertas
+            if (visibles === 0) {
+                ofertasContainer.innerHTML += `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: #666; font-size: 1.2rem;">
+                        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: #FF8C00;"></i>
+                        <p>No hay ofertas en este rango de precio</p>
+                        <p>Prueba con un precio máximo más alto</p>
+                    </div>
+                `;
+            } else {
+                // Remover mensaje si hay ofertas
+                const mensajeNoOfertas = ofertasContainer.querySelector('div[style*="grid-column"]');
+                if (mensajeNoOfertas) {
+                    mensajeNoOfertas.remove();
+                }
+            }
+        }
+
+        // Eventos del slider
+        precioSlider.addEventListener('input', actualizarPrecioValue);
+        precioSlider.addEventListener('change', actualizarPrecioValue);
+
         // Modales
         const rescateDialog = document.getElementById('rescateModal');
         const formularioDialog = document.getElementById('formularioModal');
+        const descargarDialog = document.getElementById('descargarModal');
         
         const modalImg = document.getElementById('modalImg');
         const modalNegocio = document.getElementById('modalNegocio');
@@ -829,8 +988,16 @@
         // Botones cerrar
         const modalCloseBtn1 = document.getElementById('modalCloseBtn1');
         const modalCloseBtn2 = document.getElementById('modalCloseBtn2');
+        const modalCloseBtn3 = document.getElementById('modalCloseBtn3');
         const cancelRescate1 = document.getElementById('cancelRescate1');
         const cancelRescate2 = document.getElementById('cancelRescate2');
+        const cerrarDescargar = document.getElementById('cerrarDescargar');
+
+        // ⭐ NUEVA FUNCIONALIDAD: Botón Descargar App
+        document.querySelector('.descargar-btn').addEventListener('click', () => {
+            descargarDialog.showModal();
+            modalCloseBtn3.focus();
+        });
 
         // Lógica primer modal (Rescate)
         document.querySelectorAll('.oferta .btn').forEach((btn) => {
@@ -875,15 +1042,19 @@
         // Cerrar modales
         function cerrarModal1() { if (rescateDialog.open) rescateDialog.close(); }
         function cerrarModal2() { if (formularioDialog.open) formularioDialog.close(); }
+        function cerrarModal3() { if (descargarDialog.open) descargarDialog.close(); }
 
         modalCloseBtn1.addEventListener('click', cerrarModal1);
         cancelRescate1.addEventListener('click', cerrarModal1);
         modalCloseBtn2.addEventListener('click', cerrarModal2);
         cancelRescate2.addEventListener('click', cerrarModal2);
+        modalCloseBtn3.addEventListener('click', cerrarModal3);
+        cerrarDescargar.addEventListener('click', cerrarModal3);
 
         // Click fuera para cerrar
         rescateDialog.addEventListener('click', (e) => { if (e.target === rescateDialog) cerrarModal1(); });
         formularioDialog.addEventListener('click', (e) => { if (e.target === formularioDialog) cerrarModal2(); });
+        descargarDialog.addEventListener('click', (e) => { if (e.target === descargarDialog) cerrarModal3(); });
 
         // Acción final "Aceptar"
         document.getElementById('aceptarRescate').addEventListener('click', () => {
@@ -891,7 +1062,7 @@
             alert('¡Rescate confirmado! 😊\n\nTu pedido está en proceso. Recibirás confirmación por WhatsApp.');
         });
 
-        console.log('FreshRescue Prototipo InnovaFood 🚀 - 1º SMR IES Salmedina');
+        console.log('FreshRescue Prototipo InnovaFood 🚀 - 1º SMR IES Salmedina - Filtro de precio FUNCIONAL ✅');
     </script>
 </body>
 </html>
