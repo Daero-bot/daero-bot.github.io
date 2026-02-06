@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FreshRescue </title>
+    <title>FreshRescue</title>
     <link rel="icon" type="image/jpg" href="https://i.ibb.co/5xKBLzy0/generated-image-5.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -293,7 +293,7 @@
             font-weight: 300;
         }
 
-        /* Redes Sociales - NUEVA SECCIÓN */
+        /* Redes Sociales */
         .redes-sociales {
             margin-top: 2rem;
             padding-top: 2rem;
@@ -341,17 +341,6 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        .mapa-icon {
-            font-size: 2.5rem;
-            color: #228B22;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
         /* Responsive */
         @media (max-width: 1200px) {
             .main-container {
@@ -370,6 +359,206 @@
             header { padding: 1rem; }
             .redes-icons { gap: 1rem; }
             .red-social i { font-size: 2rem; }
+        }
+
+        /* ===== MODALES CENTRADOS ===== */
+        .modal-base {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(920px, 95vw);
+            max-height: 90vh;
+            max-width: 95vw;
+            border: none;
+            border-radius: 26px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.35);
+            margin: 0;
+            background: rgba(255,255,255,0.98);
+        }
+
+        .modal-base::backdrop {
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(6px);
+        }
+
+        .modal-base[open] {
+            animation: modalIn 180ms ease-out;
+        }
+
+        @keyframes modalIn {
+            from { 
+                transform: translate(-50%, -60%) scale(0.98); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translate(-50%, -50%) scale(1); 
+                opacity: 1; 
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 2px solid rgba(0,0,0,0.08);
+            background: rgba(255,255,255,0.9);
+            cursor: pointer;
+            font-size: 28px;
+            line-height: 38px;
+            z-index: 1000;
+        }
+
+        /* MODAL RESCATE 1 */
+        .modal-rescate .modal-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 0;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .modal-rescate .modal-img {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            object-fit: cover;
+        }
+
+        .modal-rescate .modal-info {
+            padding: 2rem;
+        }
+
+        .modal-rescate .modal-negocio {
+            font-weight: 600;
+            color: #228B22;
+            margin-bottom: 0.3rem;
+        }
+
+        .modal-rescate .modal-titulo {
+            margin: 0 0 0.8rem 0;
+            color: #222;
+        }
+
+        .modal-rescate .modal-precio {
+            font-size: 2.1rem;
+            color: #FF8C00;
+            font-weight: 700;
+            margin: 0.7rem 0 0.4rem;
+        }
+
+        .modal-rescate .modal-precio span {
+            font-size: 0.55em;
+            color: #666;
+            font-weight: 400;
+            text-decoration: line-through;
+            margin-left: 0.8rem;
+        }
+
+        .modal-rescate .modal-caduca {
+            color: #FF6B35;
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+        }
+
+        .modal-rescate .modal-desc {
+            color: #444;
+            margin: 0.6rem 0 1.4rem;
+        }
+
+        .modal-rescate .modal-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        /* MODAL FORMULARIO 2 */
+        .modal-formulario {
+            max-width: 500px;
+            max-height: 70vh;
+        }
+
+        .modal-formulario .modal-content {
+            padding: 2.5rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .modal-formulario h2 {
+            color: #228B22;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #FF8C00;
+            box-shadow: 0 0 0 3px rgba(255,140,0,0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .modal-formulario .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            margin-top: 1.5rem;
+        }
+
+        .btn.btn-secondary {
+            background: linear-gradient(135deg, #777, #999);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+        }
+
+        /* Responsive */
+        @media (max-width: 720px) {
+            .modal-rescate .modal-grid { 
+                grid-template-columns: 1fr; 
+                min-height: 500px;
+            }
+            .modal-rescate .modal-img { 
+                min-height: 220px; 
+                height: 220px;
+            }
+            .modal-formulario .modal-content {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -414,7 +603,10 @@
         <!-- Contenido central -->
         <div class="ofertas-central">
             <div class="ofertas">
-                <div class="oferta">
+                <div class="oferta"
+                     data-direccion="C/ Panaderos 3, Chipiona"
+                     data-recogida="Recogida hoy 19:00–20:00"
+                     data-extra="Incluye 6 croissants; puede contener frutos secos.">
                     <img src="https://img.freepik.com/foto-gratis/croissants-tabla-cortar-madera_1150-28480.jpg?sem=taish3_w=740&fit=crop&auto=format&w=740&q=80" alt="Croissants">
                     <div class="info">
                         <div class="negocio">Panadería La Esquina</div>
@@ -425,7 +617,10 @@
                     </div>
                 </div>
 
-                <div class="oferta">
+                <div class="oferta"
+                     data-direccion="Av. del Puerto 15, Chipiona"
+                     data-recogida="Recogida hoy 14:30–15:00"
+                     data-extra="Ración para 2 personas; puede contener marisco.">
                     <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/paella-837f12c.jpg" alt="Paella">
                     <div class="info">
                         <div class="negocio">Restaurante El Puerto</div>
@@ -436,7 +631,10 @@
                     </div>
                 </div>
 
-                <div class="oferta">
+                <div class="oferta"
+                     data-direccion="C/ Mercado 1, Chipiona"
+                     data-recogida="Recogida hoy 20:00–21:00"
+                     data-extra="Caja sorpresa con fruta variada de temporada.">
                     <img src="https://i.ibb.co/kgzNK4yT/CAJA-FRUTA-scaled.jpg" alt="Fruta">
                     <div class="info">
                         <div class="negocio">Fruteria Pepe</div>
@@ -466,8 +664,6 @@
 
     <footer>
         <p>Tu app de comida sostenible <i class="fas fa-leaf"></i></p>
-        
-        <!-- NUEVA SECCIÓN DE REDES SOCIALES -->
         <div class="redes-sociales">
             <h3>¡Síguenos en nuestras redes sociales!</h3>
             <div class="redes-icons">
@@ -495,22 +691,164 @@
         </div>
     </footer>
 
+    <!-- MODAL 1: RESCATE -->
+    <dialog id="rescateModal" class="modal-base modal-rescate" aria-labelledby="rescateTitulo" aria-describedby="rescateDesc">
+        <button class="modal-close" id="modalCloseBtn1" aria-label="Cerrar">×</button>
+
+        <div class="modal-grid">
+            <img id="modalImg" class="modal-img" src="" alt="">
+
+            <div class="modal-info">
+                <div id="modalNegocio" class="modal-negocio"></div>
+                <h2 id="rescateTitulo" class="modal-titulo"></h2>
+
+                <div id="modalPrecio" class="modal-precio"></div>
+                <div id="modalCaduca" class="modal-caduca"></div>
+
+                <p id="rescateDesc" class="modal-desc"></p>
+
+                <div class="modal-actions">
+                    <button class="btn" id="confirmRescate">Confirmar rescate</button>
+                    <button class="btn btn-secondary" id="cancelRescate1">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MODAL 2: FORMULARIO DE DATOS -->
+    <dialog id="formularioModal" class="modal-base modal-formulario">
+        <button class="modal-close" id="modalCloseBtn2" aria-label="Cerrar">×</button>
+
+        <div class="modal-content">
+            <h2><i class="fas fa-user"></i> Completa tus datos</h2>
+            
+            <form id="rescateForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="direccion">Dirección de entrega</label>
+                    <input type="text" id="direccion" placeholder="Calle, Número, Ciudad" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notas">Notas especiales</label>
+                    <textarea id="notas" placeholder="Alergias, preferencias, etc..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hora">Hora preferida</label>
+                    <select id="hora">
+                        <option>Lo antes posible</option>
+                        <option>En 30 min</option>
+                        <option>En 1 hora</option>
+                        <option>En 2 horas</option>
+                    </select>
+                </div>
+            </form>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelRescate2">Cancelar</button>
+                <button class="btn" id="aceptarRescate">Aceptar</button>
+            </div>
+        </div>
+    </dialog>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Mapa real con Leaflet (centrado en Chipiona)
+        // Mapa
         const map = L.map('map').setView([36.7333, -6.4333], 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        // Marcadores de ejemplo
-        L.marker([36.7333, -6.4333]).addTo(map)
-            .bindPopup('¡Estás aquí! Ofertas cerca.');
-        L.marker([36.735, -6.435]).addTo(map)
-            .bindPopup('Panadería La Esquina');
+        L.marker([36.7333, -6.4333]).addTo(map).bindPopup('¡Estás aquí! Ofertas cerca.');
+        L.marker([36.735, -6.435]).addTo(map).bindPopup('Panadería La Esquina');
 
-        console.log('FreshRescue mejorado y listo para producción 🚀');
+        // Modales
+        const rescateDialog = document.getElementById('rescateModal');
+        const formularioDialog = document.getElementById('formularioModal');
+        
+        const modalImg = document.getElementById('modalImg');
+        const modalNegocio = document.getElementById('modalNegocio');
+        const modalTitulo = document.getElementById('rescateTitulo');
+        const modalPrecio = document.getElementById('modalPrecio');
+        const modalCaduca = document.getElementById('modalCaduca');
+        const modalDesc = document.getElementById('rescateDesc');
+
+        // Botones cerrar
+        const modalCloseBtn1 = document.getElementById('modalCloseBtn1');
+        const modalCloseBtn2 = document.getElementById('modalCloseBtn2');
+        const cancelRescate1 = document.getElementById('cancelRescate1');
+        const cancelRescate2 = document.getElementById('cancelRescate2');
+
+        // Lógica primer modal (Rescate)
+        document.querySelectorAll('.oferta .btn').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                const card = e.currentTarget.closest('.oferta');
+                if (!card) return;
+
+                const img = card.querySelector('img');
+                const negocio = card.querySelector('.negocio')?.textContent?.trim() || 'Local';
+                const titulo = card.querySelector('h3')?.textContent?.trim() || 'Oferta';
+                const precioHTML = card.querySelector('.precio')?.innerHTML || '';
+                const caduca = card.querySelector('.caduca')?.textContent?.trim() || '';
+
+                modalImg.src = img?.src || '';
+                modalImg.alt = img?.alt || 'Foto de la oferta';
+                modalNegocio.textContent = negocio;
+                modalTitulo.textContent = titulo;
+                modalPrecio.innerHTML = precioHTML;
+                modalCaduca.textContent = caduca;
+
+                const direccion = card.dataset.direccion;
+                const recogida = card.dataset.recogida;
+                const extra = card.dataset.extra;
+
+                modalDesc.textContent =
+                    (direccion ? `📍 ${direccion}. ` : '') +
+                    (recogida ? `🕒 ${recogida}. ` : '') +
+                    (extra ? extra : '');
+
+                rescateDialog.showModal();
+                modalCloseBtn1.focus();
+            });
+        });
+
+        // Abrir segundo modal desde "Confirmar rescate"
+        document.getElementById('confirmRescate').addEventListener('click', () => {
+            rescateDialog.close();
+            formularioDialog.showModal();
+            document.getElementById('nombre').focus();
+        });
+
+        // Cerrar modales
+        function cerrarModal1() { if (rescateDialog.open) rescateDialog.close(); }
+        function cerrarModal2() { if (formularioDialog.open) formularioDialog.close(); }
+
+        modalCloseBtn1.addEventListener('click', cerrarModal1);
+        cancelRescate1.addEventListener('click', cerrarModal1);
+        modalCloseBtn2.addEventListener('click', cerrarModal2);
+        cancelRescate2.addEventListener('click', cerrarModal2);
+
+        // Click fuera para cerrar
+        rescateDialog.addEventListener('click', (e) => { if (e.target === rescateDialog) cerrarModal1(); });
+        formularioDialog.addEventListener('click', (e) => { if (e.target === formularioDialog) cerrarModal2(); });
+
+        // Acción final "Aceptar"
+        document.getElementById('aceptarRescate').addEventListener('click', () => {
+            formularioDialog.close();
+            alert('Esta función todavía no está desarrollada 😊\n\n¡Pronto podrás completar tu rescate!');
+        });
+
+        console.log('FreshRescue con modales mejorados 🚀');
     </script>
 </body>
 </html>
-
